@@ -4,6 +4,8 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:@localhost/project_web'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 config = {
