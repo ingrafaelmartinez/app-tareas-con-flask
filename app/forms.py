@@ -1,6 +1,6 @@
 from wtforms import Form
 from wtforms import validators
-from wtforms import StringField, PasswordField
+from wtforms import StringField, PasswordField, TextAreaField
 from wtforms.fields.simple import BooleanField, EmailField, HiddenField
 
 from .models import User
@@ -25,11 +25,6 @@ class RegisterForm(Form):
     username = StringField('Username', [
         validators.length(min=4, max=50),
         codi_validator
-    ])
-    email = EmailField('Email', [
-        validators.length(min=6, max=100),
-        validators.DataRequired(message='El email es requerido.'),
-        validators.Email(message='Ingrese un email válido.')
     ])
     email = EmailField('Email', [
         validators.length(min=6, max=100),
@@ -61,3 +56,12 @@ class RegisterForm(Form):
     #     if len(self.password.data) < 3:
     #         self.password.errors.append('El password es demasiado corto.')
     #         return False
+
+class TaskForm(Form):
+    title = StringField('Título', [
+        validators.length(min=4, max=50, message='Título fuera de rango.'),
+        validators.DataRequired(message='El título es requerido.')
+    ])
+    description = TextAreaField('Descripción', [
+        validators.DataRequired('La descripción es requerida.')
+    ], render_kw={'rows': 5})
