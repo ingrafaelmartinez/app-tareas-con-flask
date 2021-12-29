@@ -1,5 +1,6 @@
 from flask import Flask
 
+from flask_mail import Mail
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
 from flask_wtf.csrf import CSRFProtect
@@ -11,6 +12,7 @@ bootstrap = Bootstrap()
 csrf = CSRFProtect()
 db = SQLAlchemy()
 login_manager = LoginManager()
+mail = Mail()
 
 from .views import page
 from .models import User
@@ -24,6 +26,8 @@ def create_app(config):
     login_manager.init_app(app)
     login_manager.login_view = '.login'
     login_manager.login_message = LOGIN_REQUIRED
+
+    mail.init_app(app)
 
     app.register_blueprint(page)
 
