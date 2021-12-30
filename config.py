@@ -1,5 +1,5 @@
 class Config:
-    SECRET_KEY = 'codigofacilito'
+    SECRET_KEY = 'm1clv3s3cret4'
 
 
 class DevelopmentConfig(Config):
